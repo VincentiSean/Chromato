@@ -5,13 +5,15 @@ function SearchBar({ search }) {
     const [typingTimer, setTypingTimer] = useState();
 
     const updateSeachTerm = (event) => {
+
+        // This sets a timer to wait to send what was typed. Prevents constant searches to the image api 
         const val = event.target.value;
         clearTimeout(typingTimer);
         setTypingTimer(setTimeout(() => {
             if (val) {
                 search(val);
             }
-        }, 750));
+        }, 250));
     }
 
   return (

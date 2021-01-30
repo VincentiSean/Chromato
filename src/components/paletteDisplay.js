@@ -22,7 +22,7 @@ function PaletteDisplay(props) {
         colors.length > 0
             ?   (<div style={{display: 'flex'}}>
                     {props.colors.map((color, index) => {
-                        return (<div style={{
+                        return (<div key={index} style={{
                                     backgroundColor: `rgb(${color})`,
                                     height: heightVal,
                                     width: widthVal

@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-// import { ColorExtractor } from 'react-color-extractor';
 import ColorThief from 'colorthief/dist/color-thief.mjs';
 import axios from 'axios';
 
@@ -10,18 +9,15 @@ import PaletteDisplay from './components/paletteDisplay';
 function App() {
 
   let [currColors, setCurrColors] = useState();
-  let [searchTerm, setSearchTerm] = useState("");
   let [imageURL, setImageURL] = useState();
 
   const colorThief = new ColorThief();
   const RAPID_API_KEY = process.env.REACT_APP_RAPID_API_KEY;
 
-  useEffect(() => {
-    console.log("refresh");
-  }, [imageURL, currColors, searchTerm])
+  useEffect(() => {}, [imageURL, currColors])
 
+  // Sends the term from the search bar into the Bing API function
   const handleSearch = newSearchTerm => {
-    setSearchTerm(newSearchTerm);
     searchAPI(newSearchTerm);
   }
 
@@ -56,14 +52,9 @@ function App() {
 
     img.crossOrigin = 'Anonymous';
     img.src = googleProxyURL + encodeURIComponent(imageURL);
-
-    // setColors(colors);
-    // setCurrColors(colors);
   }
 
-  console.log(searchTerm);
-  console.log(currColors);
-  console.log(imageURL);
+
   return (
     <div className="App">
       <SearchBar search={handleSearch} />
@@ -72,11 +63,6 @@ function App() {
       {imageURL !== undefined
         ?   (<>
               <PaletteDisplay colors={currColors} />
-              {/* <ColorExtractor 
-                src={imageURL} 
-                getColors={colors => changeColors}
-                maxColors={6}>
-              </ColorExtractor> */}
             </>)
         : <></>
       }

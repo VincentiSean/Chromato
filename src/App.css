@@ -304,40 +304,36 @@ select {
   }
 }
 
-/* :root {
-  $hollowBoxSize: 3em;
-  $hollowLight: #ECECEC;
-  $hollowDark: #34495e;
-  $hollowTiming: 1.25s;
-} */
-
 .loader {
   position: absolute;
   top: 50vh;
   left: 50vw;
-  width: 3em;
+
   height: 3em;
-  animation: loaderAnim 1.25s infinite ease-in-out;
   outline: 1px solid transparent;
+  width: 3em;
   z-index: 10;
+
+  animation: loaderAnim 1.25s infinite ease-in-out;
 }
 
 .large-box {
-    height: 3em;
-    width: 3em;
-    background-color: #ECECEC;
-    outline: 1px solid transparent;
-    position: fixed;
+  background-color: #ECECEC;
+  height: 3em;
+  outline: 1px solid transparent;
+  position: fixed;
+  width: 3em;
 }
 
 .small-box {
-    height: 3em;
-    width: 3em;
-    background-color: #34495e;
-    position: fixed;
-    z-index: 1;
-    outline: 1px solid transparent;
-    animation: smallBoxAnim 1.25s alternate infinite ease-in-out;
+  background-color: #34495e;
+  height: 3em;
+  outline: 1px solid transparent;
+  position: fixed;
+  width: 3em;
+  z-index: 1;
+  
+  animation: smallBoxAnim 1.25s alternate infinite ease-in-out;
 }
 
 @keyframes smallBoxAnim {

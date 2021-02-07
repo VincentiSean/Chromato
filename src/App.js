@@ -27,6 +27,7 @@ function App() {
   let [user, setUser] = useState();
   let [paletteArray, setPaletteArray] = useState([]);
   let [needSavedPals, setNeedSavedPals] = useState(true);
+  let [loadBool, setLoadBool] = useState(false);
 
   const colorThief = new ColorThief();
   const RAPID_API_KEY = process.env.REACT_APP_RAPID_API_KEY;
@@ -98,7 +99,9 @@ function App() {
   // Receives an image url and uses ColorThief to average 5 main colors
   //    from the image and set the state colors var as an array of 5 rgb values
   const getImageColors = image => {
-    
+ 
+    setLoadBool(true);
+
     const img = new Image();
     img.addEventListener('load', () => {
       setCurrColors(colorThief.getPalette(img, 5));
@@ -110,6 +113,10 @@ function App() {
 
     img.crossOrigin = 'Anonymous';
     img.src = googleProxyURL + encodeURIComponent(imageURL);
+
+    setTimeout(function() {
+      setLoadBool(false);
+    }, 2000);
   }
 
 
@@ -202,6 +209,7 @@ function App() {
     setCurrColors(newPalArr);
   }
 
+  
   return (
     <div className="App">
       <div className="header">
@@ -214,7 +222,13 @@ function App() {
           palettes={togglePalettes}
         />
       </div>
-
+      {loadBool
+        ?   (<div className="loader">
+              <div className="large-box"></div>
+              <div className="small-box" style={{ backgroundColor: `rgb(${currColors[2]})` }}></div>
+            </div>)
+        :   <></>
+      }
       {/* Displays currColors if not undefined */}
       {currColors !== undefined
         ?   (<>

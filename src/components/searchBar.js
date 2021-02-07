@@ -26,8 +26,8 @@ function SearchBar({ search }) {
         InputProps={{
           style: {
             color: '#f3f3f3',
-            padding: '0 10px'
-          }
+            padding: '0 10px',
+          }         
         }}
       />
     </>

@@ -1,5 +1,6 @@
 {
   "name": "chromato",
+  "homepage": "https://seanvincenti.dev/Chromato/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

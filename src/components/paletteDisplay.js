@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SingleColor from "./singleColor";
 
 function PaletteDisplay(props) {
 
     let [colors, setColors] = useState([]);
-    let [colorBool, setColorBool] = useState(false);
+    let [colorBool, setColorBool] = useState(false);    
 
     useEffect(() => {
         if (!colorBool) {
@@ -13,19 +13,21 @@ function PaletteDisplay(props) {
                 setColorBool(true);
             }
         }
-
     }, [props, colorBool])
 
     return (
-        colors.length > 0
-            ?   (<div className="palette-display" style={{ display: 'flex' }}>
-                    {props.colors.map((color, index) => {
-                        return (
-                            <SingleColor key={index} color={color} />
-                        )
-                    })}
-                </div>)
-            :   <></>
+        <>
+            {colors.length > 0
+                ?   (<div className="palette-display" style={{ display: 'flex' }}>
+                        {props.colors.map((color, index) => {
+                            return (
+                                <SingleColor key={index} color={color} />
+                            )
+                        })}
+                    </div>)
+                :   <></>
+            }
+        </>
     );
 }
 

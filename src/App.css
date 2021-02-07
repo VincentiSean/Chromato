@@ -1,0 +1,312 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* /////////////////// */
+/******* BLOCKS *******/
+/* ///////////////// */
+
+.header {
+  background-color: #343434;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5vh;
+  width: 100vw;
+}
+
+.signin-prompt {
+  position: absolute;
+  left: calc(50vw - 25vw);
+  top: calc(50vh - 25vh);
+  height: 50vh;
+  width: 50vw;
+
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px rgba(0,0,0,0.5);
+  height: auto;
+  margin: 25vh auto;
+  padding: 20px 0 5px;
+  position: relative;
+  width: 75vw;
+  max-width: 350px;
+  z-index: 2;
+}
+
+.onboard-switch-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px 0 0;
+}
+
+.palette-display {
+  cursor: pointer;
+  position: absolute;
+  top: 5vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.color-code-div {
+  /* background-color: #343434;
+  border-radius: 10px;
+  color: #f3f3f3;
+  font-weight: 600;
+  padding: 5px 5px;
+  position: absolute;
+  bottom: 30px; */
+/* 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.saved-palette-wrapper {
+  position: relative;
+  margin: 10vh auto;
+  width: 55vw;
+}
+
+.saved-palette-div {
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px rgba(0,0,0,0.5);
+  height: auto;
+  max-height: 80vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 55vw;
+  max-width: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.saved-palette {
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  margin: 15px auto;
+  position: relative;
+  width: 80%;
+}
+
+
+.saved-indiv-color {
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 20%;
+  max-width: 40px;
+}
+
+
+/* ////////////////// */
+/******* INPUTS ******/
+/* //////////////// */
+
+.onboard-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboard-submit {
+  background-color: transparent;
+  border: 2px solid #343434;
+  cursor: pointer;
+  margin: 25px 0 0;
+  padding: 6px 22px;
+}
+
+.login-close-btn {
+  background-color: #343434;
+  border-radius: 10px;
+  border: 2.5px solid #f3f3f3;
+  color: #f3f3f3;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  left: 93%;
+}
+
+.onboard-switch-btn {
+  background-color: transparent;
+  border: none;
+  color: #659dbd;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.palette-close-btn {
+  background-color: #343434;
+  border-radius: 10px;
+  border: 2.5px solid #f3f3f3;
+  color: #f3f3f3;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.palette-del-btn {
+  background-color: #343434;
+  border-radius: 10px;
+  border: 2.5px solid #f3f3f3;
+  color: #f3f3f3;
+  cursor: pointer;
+  padding-bottom: 2px;
+  position: absolute;
+  top: 17%;
+  left: 85%;
+  z-index: 3;
+}
+
+
+/* ////////////////// */
+/******* MULTIMEDIA ******/
+/* //////////////// */
+
+.icon-tabler-menu-2 {
+  stroke: #f3f3f3;
+}
+
+.icon-tabler-clipboard-check {
+  stroke: #f3f3f3;
+}
+
+
+/* //////////////// */
+/******* TEXT ******/
+/* ////////////// */
+.onboard-switch-text {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: -5px;
+}
+
+.fire-errors {
+  color: red;
+  font-size: 0.9rem;
+  margin: 0 0 5px;
+}
+
+
+@media only screen and (min-width: 650px) {
+  .saved-palette-wrapper {
+    width: 60vw;
+    max-width: 500px;
+  }
+  
+  .saved-palette-div {
+    flex-flow: row wrap;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .saved-palette {
+    flex: 0 1 40%;
+  }
+}

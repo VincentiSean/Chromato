@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-function MenuComp({ saveCurrPalette, user, login, logout, palettes }) {
+function MenuComp({ saveCurrPalette, user, login, logout, palettes, edit }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -40,6 +40,11 @@ function MenuComp({ saveCurrPalette, user, login, logout, palettes }) {
         handleClose();
     }
 
+    const editPalette = () => {
+        edit(true);
+        handleClose();
+    }
+
     return (
         <div>
             <Button 
@@ -71,10 +76,8 @@ function MenuComp({ saveCurrPalette, user, login, logout, palettes }) {
                     ?   (<MenuItem onClick={handleLogin}>Login</MenuItem>)
                     :   (<div>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                            <MenuItem onClick={savePalette}>Save Palette</MenuItem>
-                            <MenuItem onClick={handlePalettes}>
-                                Saved Palettes
-                            </MenuItem>
+                            <MenuItem onClick={savePalette} onTouchEnd={savePalette}>Save Palette</MenuItem>
+                            <MenuItem onClick={handlePalettes}>Saved Palettes</MenuItem>
                         </div>)
                 }
                 

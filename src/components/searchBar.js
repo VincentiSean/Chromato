@@ -12,7 +12,7 @@ function SearchBar({ search }) {
             if (val) {
               search(val);
             }
-        }, 200));
+        }, 750));
     }
 
   return (
@@ -24,9 +24,11 @@ function SearchBar({ search }) {
         autoFocus={true}
         onChange={updateSeachTerm}
         InputProps={{
+          disableUnderline: true,
           style: {
             color: '#f3f3f3',
             padding: '0 10px',
+            width: '100%'
           }         
         }}
       />

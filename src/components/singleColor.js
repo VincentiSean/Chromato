@@ -14,12 +14,12 @@ const icons = [
     </animated.div>
 ]
 
-function SingleColor({ color }) {
+function SingleColor({ color, changeColor }) {
 
     let [displayBool, setDisplayBool] = useState(false);
     let [index, set] = useState(0);
     const [hex, setHex] = useState([]);    
-    const heightVal = '95vh';
+    const heightVal = '100%';
     const widthVal = '20%';
 
     const transitions = useTransition(index, p => p, {
@@ -29,6 +29,7 @@ function SingleColor({ color }) {
                 opacity: 0,
                 borderRadius: '10px',
                 color: '#f3f3f3',
+                fontSize: '14px',
                 fontWeight: 600,
                 padding: '5px 5px',
                 bottom: '30px',
@@ -94,20 +95,24 @@ function SingleColor({ color }) {
         }
     }
 
-    const copyToClipboard = useCallback(() => {
-        set(state => (state + 1) % 2);
-        navigator.clipboard.writeText(`#${hex.join('')}`);
+    // const copyToClipboard = useCallback(() => {
+    //     set(state => (state + 1) % 2);
+    //     navigator.clipboard.writeText(`#${hex.join('')}`);
 
-        setTimeout(function() {
-            set(state => (state + 1) % 2);
-        }, 1000);
-    });
+    //     setTimeout(function() {
+    //         set(state => (state + 1) % 2);
+    //     }, 1000);
+    // });
+
+    const editColor = () => {
+        changeColor(true);
+    }
 
     return (
         <div 
             onMouseOut={displayColorCode}
             onMouseOver={displayColorCode}
-            onClick={copyToClipboard}
+            onClick={editColor}
             style={{
                 backgroundColor: `rgb(${color})`,
                 color: '#f3f3f3',

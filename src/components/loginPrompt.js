@@ -62,6 +62,7 @@ function LoginPrompt(props) {
         e.preventDefault();
         if (samePass) {
             fire.auth().createUserWithEmailAndPassword(email, password)
+            .then(closePrompt())
                 .catch((error) => {
                     setFireErrors(error.message);
                 });

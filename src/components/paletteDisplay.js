@@ -6,22 +6,25 @@ function PaletteDisplay(props) {
     let [colors, setColors] = useState([]);
     let [colorBool, setColorBool] = useState(false);    
 
+    
     useEffect(() => {
         if (!colorBool) {
-            if (props.colors) {
+            if (props.colors.length === 5) {
                 setColors(props.colors);
-                setColorBool(true);
+            } else {
+                setColors(props.colors[0]);
             }
         }
-    }, [props, colorBool])
-
+    }, [props, colors, colorBool])
+    
+    
     return (
         <>
-            {colors.length > 0
+            {colors !== undefined
                 ?   (<div className="palette-display" style={{ display: 'flex' }}>
-                        {props.colors.map((color, index) => {
+                        {colors.map((color, index) => {
                             return (
-                                <SingleColor key={index} color={color} />
+                                <SingleColor key={index} color={color} changeColor={() => props.changeColor(color, index)} />
                             )
                         })}
                     </div>)

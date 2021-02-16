@@ -7,6 +7,11 @@ function IndividualSavedPal({ changeDisplay, deletePal, palette }) {
     // Sets props to trigger display change to selected palette
     function changePalDisplay() {
         changeDisplay(palette);
+        setDelBtn(true);
+    }
+
+    function trueShowDel() {
+        setDelBtn(true);
     }
 
     // Triggers the x button to show on hover
@@ -23,18 +28,11 @@ function IndividualSavedPal({ changeDisplay, deletePal, palette }) {
             <div 
                 className="saved-palette" 
                 onClick={changePalDisplay}
-                onMouseOver={showDelete}
+                onMouseEnter={trueShowDel}
+                onMouseOver={trueShowDel}
                 onMouseOut={showDelete}
+                onTouchStart={changePalDisplay}
             >
-                {delBtn
-                    ?   (<button 
-                            className="palette-del-btn" 
-                            onClick={deletePalette}
-                        >
-                            X
-                        </button>)
-                    : <></>
-                }
                 <div 
                     className="saved-indiv-color"
                     style={{
@@ -60,6 +58,17 @@ function IndividualSavedPal({ changeDisplay, deletePal, palette }) {
                     style={{
                         backgroundColor: `rgb(${palette.colorFive})`
                 }}></div>
+
+                {delBtn
+                    ?   (<button 
+                            className="palette-del-btn" 
+                            onMouseDown={deletePalette}
+                            onTouchEnd={deletePalette}
+                        >
+                            X
+                        </button>)
+                    : <></>
+                }
             </div>
     )
 }

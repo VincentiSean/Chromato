@@ -40,10 +40,16 @@ function SingleColor({ color, changeColor }) {
 
     useEffect(() => {
         getHex(color);
-    }, [color])
+    }, [color, displayBool])
 
     function displayColorCode() {
-        setDisplayBool(!displayBool);
+        if (!displayBool) {
+            setDisplayBool(!displayBool);
+        } else {
+            setTimeout(function() {
+                setDisplayBool(!displayBool);
+            }, 500);
+        }
     }
 
 
@@ -95,23 +101,26 @@ function SingleColor({ color, changeColor }) {
         }
     }
 
-    // const copyToClipboard = useCallback(() => {
-    //     set(state => (state + 1) % 2);
-    //     navigator.clipboard.writeText(`#${hex.join('')}`);
+    const copyToClipboard = useCallback(() => {
+        set(state => (state + 1) % 2);
+        navigator.clipboard.writeText(`#${hex.join('')}`);
 
-    //     setTimeout(function() {
-    //         set(state => (state + 1) % 2);
-    //     }, 1000);
-    // });
+        setTimeout(function() {
+            set(state => (state + 1) % 2);
+        }, 1000);
+    });
 
     const editColor = () => {
         changeColor(true);
+        // setTimeout(function() {
+            displayColorCode();
+        // }, 500);
     }
 
     return (
         <div 
-            onMouseOut={displayColorCode}
-            onMouseOver={displayColorCode}
+            // onMouseOut={displayColorCode}
+            // onMouseOver={displayColorCode}
             onClick={editColor}
             style={{
                 backgroundColor: `rgb(${color})`,
@@ -125,7 +134,7 @@ function SingleColor({ color, changeColor }) {
                 width: widthVal
         }}>
             {displayBool
-                ?   (<div className="color-code-div">
+                ?   (<div className="color-code-div" style={{ zIndex:5 }} onClick={copyToClipboard}>
                         {transitions.map(({ item, props, key }) => {
                             const Icon = icons[item]
                             return <Icon hex={hex} key={key} style={props} />

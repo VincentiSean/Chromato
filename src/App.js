@@ -196,9 +196,11 @@ function App() {
 
   // Saves the current array of colors in currColors to the Firebase db
   function savePalette(boolVal) {
+
+    let stringPalette = currPal.join("").replaceAll(",", "");
     if (boolVal) {
       if (currPal[0][4]) {
-        db.ref(`users/${user.uid}/${currPal[0][0]}`)
+        db.ref(`users/${user.uid}/${stringPalette}`)
         .set({
           "colorOne": currPal[0][0],
           "colorTwo": currPal[0][1],
@@ -207,7 +209,7 @@ function App() {
           "colorFive": currPal[0][4]
         })
       } else {
-        db.ref(`users/${user.uid}/${currPal[0]}`)
+        db.ref(`users/${user.uid}/${stringPalette}`)
         .set({
           "colorOne": currPal[0],
           "colorTwo": currPal[1],
@@ -239,7 +241,32 @@ function App() {
 
   // Handles deleting a palette from the user's saved palettes when the user click the x
   function deletePal(palette) {
-    db.ref(`users/${user.uid}`).child((palette.colorOne).join()).remove();
+
+    // Turn the color palette object into an array
+    let arrayifiedPalette = Object.entries(palette);
+    
+    // Make a new array to reorder and hold the color palette
+    let arrayHolder = [];
+    arrayHolder.push(arrayifiedPalette[2].join(","));
+    arrayHolder.push(arrayifiedPalette[4].join(","));
+    arrayHolder.push(arrayifiedPalette[3].join(","));
+    arrayHolder.push(arrayifiedPalette[1].join(","));
+    arrayHolder.push(arrayifiedPalette[0].join(","));
+
+    // Split up each array item and get rid of unnecessary words from object
+    for (let i = 0; i < 5; i++) {
+      let tempArray = arrayHolder[i].split(",");
+      arrayHolder[i] = tempArray.splice(1, 3);
+    }
+
+    // Rejoin the array into a string and replace all commas with nothing
+    arrayHolder = arrayHolder.join("");
+    arrayHolder = arrayHolder.replaceAll(",","");
+    
+    // Search db for corresponding moniker and remove
+    db.ref(`users/${user.uid}`).child(arrayHolder).remove();
+
+    // Update saved palettes
     getPalettes();
   }
 
@@ -268,7 +295,6 @@ function App() {
   }
 
   function changeColor(newColor) {
-    console.log(newColor);
     let newPal = [[]];
     let oldPal = [[]];
     if (!Array.isArray(currPal[0][0])) {

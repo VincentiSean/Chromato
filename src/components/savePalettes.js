@@ -11,6 +11,7 @@ function SavedPalettes({ changeDisplay, deletePal, close, palettes }) {
         close(true);
     }
 
+    
     return (
         palettes.length > 0
             ?   (<div className="saved-palette-wrapper">

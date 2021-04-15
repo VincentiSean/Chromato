@@ -135,7 +135,7 @@ function PaletteEditor({ color, changedColor, close }) {
                     height: 20,
                     width: 20,
                     backgroundColor: `rgb(${red}, 0,0)`,
-                    border: `2px solid rgb(${red},0,0)`,
+                    border: `2px solid rgb(175,0,0)`,
                     marginTop: -8,
                     marginLeft: -12,
                     '&:focus, &:hover, &:$active': {
@@ -171,7 +171,7 @@ function PaletteEditor({ color, changedColor, close }) {
                     height: 20,
                     width: 20,
                     backgroundColor: `rgb(0, ${green}, 0)`,
-                    border: `2px solid rgb(0,${green},0)`,
+                    border: `2px solid rgb(0,175,0)`,
                     marginTop: -8,
                     marginLeft: -12,
                     '&:focus, &:hover, &:$active': {
@@ -207,7 +207,7 @@ function PaletteEditor({ color, changedColor, close }) {
                     height: 20,
                     width: 20,
                     backgroundColor: `rgb(0, 0, ${blue})`,
-                    border: `2px solid rgb(0,0,${blue})`,
+                    border: `2px solid rgb(0,0,175)`,
                     marginTop: -8,
                     marginLeft: -12,
                     '&:focus, &:hover, &:$active': {
